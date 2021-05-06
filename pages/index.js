@@ -35,7 +35,7 @@ const Home = ({ api_key}) => {
   // fetch movie data by search term
   const movieSearch = async () => {
     // formmating url to get data
-    const url = `http://www.omdbapi.com/?apikey=${api_key}&s=${term}`;
+    const url = `https://www.omdbapi.com/?apikey=${api_key}&s=${term}`;
     const res = await fetch(url);
     const retJson = await res.json();
     return retJson;
@@ -105,7 +105,7 @@ const Home = ({ api_key}) => {
   }
 
   const setSaveNoms = _ => {
-    console.log(noms)
+    console.log('Just saved noms!')
     localStorage.setItem(STORAGE_KEY, JSON.stringify(noms));
   }
 
