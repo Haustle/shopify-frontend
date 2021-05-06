@@ -11,6 +11,7 @@ const Home = ({ api_key}) => {
   // ref used on search element
   const searchElement = createRef();
   const movieDetailDom = createRef();
+  const [initialRender, setInitialRender] = useState(false);
 
   // maintain search data and search term / query
   const [term, setTerm] = useState("") // this is the search term from input
@@ -115,10 +116,17 @@ const Home = ({ api_key}) => {
     return nomString
   }
   useEffect(() => {
-    setSaveNoms();
-    if(noms.length === NUM_OF_MOVIES){
-      console.log("We have 5");
+    console.log("hello");
+    if(!initialRender){
+      setInitialRender(true);
     }
+    else{
+      setSaveNoms();
+      if (noms.length === NUM_OF_MOVIES) {
+        console.log("We have 5");
+      }
+    }
+    
   },[noms])
 
   
