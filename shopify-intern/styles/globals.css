@@ -5,6 +5,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   height: 100%;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
 }
 
 a {
@@ -14,4 +17,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+.align-items{
+  display: flex;
+  align-items: center;
+}
+.space-between{
+  display: flex;
+  justify-content: space-between;
 }

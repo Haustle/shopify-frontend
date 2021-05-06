@@ -18,10 +18,8 @@ const Layout = ({children}) => {
                     width; 100%;
                 }
                 div{
-                    height: 500px;
+                    position: relative;
                     width: 800px;
-                    // background-color: red;
-                    // border: 1px solid black;
                     border-radius: 5px;
 
                 }
