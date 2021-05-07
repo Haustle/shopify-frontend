@@ -1,5 +1,5 @@
 import { createRef, useEffect, useState } from "react";
-import SearchResults from '@components/Content';
+import SearchResults from '@components/SearchResults';
 import Completionbar from '@components/CompletionBar';
 import MovieDetails from '@components/MovieDetails';
 import fetch from 'node-fetch';
@@ -15,7 +15,6 @@ const Home = ({ api_key}) => {
 
   // ref used on search element
   const searchElement = createRef();
-  const movieDetailDom = createRef();
 
   // maintain search data and search term / query
   const [term, setTerm] = useState("") // this is the search term from input
@@ -205,7 +204,7 @@ const Home = ({ api_key}) => {
   return(
     <>
       <div id="wrapper">
-        {movieWindow ? <MovieDetails movieObject={selectedMovie} setMovieWindow={setMovieWindow} ref={movieDetailDom} /> : null}
+        {movieWindow ? <MovieDetails ids={ids} movieObject={selectedMovie} setMovieWindow={setMovieWindow} api_key={api_key}/> : null}
 
         {/* Nav Bar */}
         <div id="nav">

@@ -175,7 +175,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     justify-content: space-between;
                     width: 100%;
                     border-radius: 5px;
-                    height: 100%;
+
                 }
             `}</style>
         </>
