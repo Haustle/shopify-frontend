@@ -1,7 +1,8 @@
 const CompletionBar = ({current, limit}) => {
+    const difffernece = limit - current;
     return(
         <>
-            {/* <div className="current">{current} of {limit}</div> */}
+            <div className="current">{difffernece == 0 ? 'Done' : `Add ${difffernece} more!`}</div>
             <div className="completion-wrapper">
                 <div className="completion"></div>
             </div>
@@ -9,7 +10,7 @@ const CompletionBar = ({current, limit}) => {
                 .current{
                     text-align: right;
                     margin-bottom: 5px;
-                    font-size: .8rem;
+                    font-size: 1rem;
                 }
                 .completion{
                     height: 10px;
