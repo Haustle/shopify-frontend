@@ -30,6 +30,7 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
         mainDiv.current.focus();
         const getInfo = async () => {
             const searchData = await getMoreInfo();
+            console.log(searchData)
             setMoreInfo(searchData);
         }
 
@@ -38,35 +39,39 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
 
     return(
         <>
-            <div className="container" onKeyDown={escapeWatch} tabIndex="-1" ref={mainDiv}>
-                <div className="space-between ">
-                    <div className="left-movie-details">
-                        <img src={Poster} />
-                        
-                        <div className="title">{Title}<span className="year">({Year})</span></div>
-                        <div className="type-and-rating">
-                            <span>{Type}</span>
-                            <span>{moreInfo.Rated != "N/A" ? moreInfo.Rated : "No Rating"}</span>
-                        </div>
-                        {ids.has(imdbID) ? <div className="nominated">Nominated</div> : null}
-                        
+            <div className="wrapper">
+                <div className="container" onKeyDown={escapeWatch} tabIndex="-1" ref={mainDiv}>
+                    <div className="space-between ">
+                        <div className="left-movie-details">
+                            <img src={Poster} />
 
-                    </div>
-                    <div className="right-movie-details">
-                        <div className="esc">
-                            <div className="close" onClick={() => setMovieWindow(false)}>Close</div>
+                            <div className="title">{Title}<span className="year">({Year})</span></div>
+                            <div className="type-and-rating">
+                                <span className="details">{Type}</span>
+                                <span className="details">{moreInfo.Rated != "N/A" ? <span>Rated: <b>{moreInfo.Rated}</b> </span> : "No Rating"}</span>
+                            </div>
+                            {ids.has(imdbID) ? <div className="nominated">Nominated 🏆</div> : null}
+
 
                         </div>
-                        <div className="summary">
-                            <h2>Plot</h2>
-                            <div>{moreInfo.Plot}</div>
+                        <div className="right-movie-details">
+                            <div className="esc">
+                                <div className="close" onClick={() => setMovieWindow(false)}>Close</div>
+
+                            </div>
+                            <div className="summary">
+                                <h2>Plot</h2>
+                                <div>{moreInfo.Plot}</div>
+                            </div>
                         </div>
+
                     </div>
-                    
+
                 </div>
-                
             </div>
+            
             <style jsx>{`
+                
                 .year{
                     font-size: .8rem;
                     font-weight: 400;
@@ -99,10 +104,10 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                     display: flex;
                     justify-content: center;
                 }
-                .type-and-rating span:not(:first-child){
+                .type-and-rating .details:not(:first-child){
                     margin-left: 10px;
                 }
-                .type-and-rating span{
+                .type-and-rating .details{
                     font-size: .9rem;
                     border: 1px solid black;
                     padding: 2px 5px;
@@ -143,6 +148,15 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                     cursor: pointer;
                     font-weight: 500;
                     font-size: .8rem;
+                }
+                .wrapper{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    // background-color: red;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .container{
                     outline: none;

@@ -44,7 +44,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                                             
                                         </div>
                                     ))
-                                ) : null}
+                                ) : 'Search Above'}
                             </div>
                             
 
@@ -63,7 +63,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     width: 85%;
                 }
                 .search-results-container{
-                    margin-top: 50px;
+                    // margin-top: 50px;
                 }
                 .fade{
                     opacity: 0.4;
