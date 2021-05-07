@@ -124,7 +124,11 @@ const Home = ({ api_key}) => {
   // save our current list of nominations to local storage
   const setSaveNoms = _ => {
     console.log('Just saved noms!')
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(noms));
+    const delim = "==+++==";
+    const nomsString = JSON.stringify(noms); // array -> string
+    const idsString = JSON.stringify([...ids]); // set -> array -> string
+    const savedTerm = `${nomsString}${delim}${idsString}`
+    localStorage.setItem(STORAGE_KEY, savedTerm);
   }
 
   // retrieve movies from localstorage
@@ -141,6 +145,7 @@ const Home = ({ api_key}) => {
     // we only want to save nominations when there's been changes
     // and not on the intial load of the state, thus it'd be empty
     // as our intial value is empty
+
     if(!initialRender){
       setInitialRender(true);
     }
@@ -161,8 +166,17 @@ const Home = ({ api_key}) => {
   useEffect(() => {
     const savedNominationsString = getSavedNoms();
     if(savedNominationsString){
-      const stringToObject = JSON.parse(savedNominationsString);
-      setNoms(stringToObject);
+      const delim = "==+++==";
+
+      const [nomsString, idsString] = savedNominationsString.split(delim)
+      console.log(nomsString)
+      // set nominations state
+      const nomStringToArray = JSON.parse(nomsString);
+      setNoms(nomStringToArray);
+
+      const idsStringToArray = JSON.parse(idsString);
+      const idsArrayToSet = new Set(idsStringToArray);
+      setIds(idsArrayToSet)
     }
     
   },[])
