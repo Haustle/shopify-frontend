@@ -30,7 +30,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                                             <div className="movie-options">
                                                 {ids.has(movie.imdbID) ? (
 
-                                                    <div className="remove" onClick={removeMovie} data-id={movie.imdbID}>Remove</div>
+                                                    <div className="remove" onClick={() =>removeMovie(movie.imdbID)}>Remove</div>
 
                                                 ) : ( <>
                                                     <div className="more" onClick={() => openMovie(movie)} data-id={movie.imdbID}>Details</div>

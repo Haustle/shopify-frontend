@@ -1,4 +1,5 @@
 import { createRef, useEffect, useState } from "react";
+import fetch from 'node-fetch';
 
 const MovieDetails = ({movieObject, setMovieWindow}) => {
 
@@ -12,6 +13,12 @@ const MovieDetails = ({movieObject, setMovieWindow}) => {
         }
     }
 
+    // const getMoreInfo = async () => {
+    //     const url = `http://www.omdbapi.com/?apikey=${api_key}&s=${term}`;
+    //     const res = await fetch(url);
+    //     const retJson = await res.json();
+    //     return retJson;
+    // }
     // Make sure we're focusing the parent div so we exit on input 'Escape'
     useEffect(() => {
         mainDiv.current.focus();
