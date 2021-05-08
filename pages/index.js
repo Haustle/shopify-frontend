@@ -86,8 +86,7 @@ const Home = ({ api_key}) => {
     }
   }
 
-  const addMovie = (movieDOM) => {
-    const id = movieDOM.target.dataset.id; // get the imdbID from data-id of div
+  const addMovie = (id) => {
     if (noms.length < NUM_OF_MOVIES && !ids.has(id)) {
       let tempIds = ids;
       tempIds.add(id);
@@ -204,7 +203,7 @@ const Home = ({ api_key}) => {
   return(
     <>
       <div id="wrapper">
-        {movieWindow ? <MovieDetails ids={ids} movieObject={selectedMovie} setMovieWindow={setMovieWindow} api_key={api_key}/> : null}
+        {movieWindow ? <MovieDetails ids={ids} movieObject={selectedMovie} setMovieWindow={setMovieWindow} api_key={api_key} addMovie={addMovie} removeMovie={removeMovie}/> : null}
 
         {/* Nav Bar */}
         <div id="nav">
@@ -231,7 +230,7 @@ const Home = ({ api_key}) => {
                 <h3 className="your-choices">Your Choices</h3>
                 {noms && noms.length > 0 ? (
                   noms.map((movie, index) => (
-                    <div key={`nom${movie.Title}`} className="nominee-container align-items">
+                    <div key={`nom${movie.Title}${index}`} className="nominee-container align-items">
                       <span className="remove-movie" onClick={() => removeMovie(movie.imdbID)}>x</span>
                       <div className="nominee" onClick={() => openMovie(movie)} key={`${index}${movie.imdbID}`}>{movie.Title}</div>
                     </div>
@@ -254,6 +253,9 @@ const Home = ({ api_key}) => {
       </div>
       
       <style jsx>{`
+        .pointer-events-none{
+          pointer-events: none;
+        }
         .remove-movie{
           position: relative;
           left: -20px;

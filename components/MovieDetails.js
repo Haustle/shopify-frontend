@@ -1,9 +1,10 @@
 import { createRef, useEffect, useState } from "react";
 import fetch from 'node-fetch';
 
-const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, addMovie}) => {
+const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, addMovie}) => {
 
     const [moreInfo, setMoreInfo] = useState({});
+    const [tomato, setTomato] = useState({});
     const mainDiv = createRef()
 
     // deconstructing the movie object
@@ -30,7 +31,9 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
         mainDiv.current.focus();
         const getInfo = async () => {
             const searchData = await getMoreInfo();
-            console.log(searchData)
+            // console.log(searchData)
+            const rottenTomatoes = searchData.Ratings.filter(rating => rating.Source == "Rotten Tomatoes")[0];
+            setTomato(rottenTomatoes);
             setMoreInfo(searchData);
         }
 
@@ -43,14 +46,27 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                 <div className="container" onKeyDown={escapeWatch} tabIndex="-1" ref={mainDiv}>
                     <div className="space-between ">
                         <div className="left-movie-details">
-                            <img src={Poster} />
+                            <img className="poster" src={Poster} />
 
                             <div className="title">{Title}<span className="year">({Year})</span></div>
                             <div className="type-and-rating">
                                 <span className="details">{Type}</span>
                                 <span className="details">{moreInfo.Rated != "N/A" ? <span>Rated: <b>{moreInfo.Rated}</b> </span> : "No Rating"}</span>
                             </div>
-                            {ids.has(imdbID) ? <div className="nominated">Nominated 🏆</div> : null}
+                            <div className="button-container">
+                                {ids.has(imdbID) ?
+                                    (
+                                        <div className="button-container">
+                                            <div className="button-base nominated">Nominated</div>
+                                            <div className="button-base remove" onClick={() => removeMovie(imdbID)}>Remove</div>
+                                        </div>
+
+                                    )
+                                    :
+                                    <div className="button-base add" onClick={() => addMovie(imdbID)}>add</div>
+                                }
+                            </div>
+                            
 
 
                         </div>
@@ -63,6 +79,29 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                                 <h2>Plot</h2>
                                 <div>{moreInfo.Plot}</div>
                             </div>
+
+                            <div className="director">
+                                <div>
+                                    <span>Director: </span>
+                                    <b>{moreInfo.Director}</b>
+                                </div>
+                                <div>
+                                    <span>Length: </span>
+                                    <b>{moreInfo.Runtime}</b>
+                                </div>
+                                
+                            </div>
+                            {tomato ?
+                                (<div className="align-items ratings-container">
+                                    <img className="rotten" src="rotten.png" />
+                                    <span>{tomato.Value}</span>
+                                </div>)
+                                :
+                                null
+                            }
+                            <div className="button-base more-info">
+                                <a href={`https://www.imdb.com/title/${imdbID}`} target="_blank">More info</a>
+                            </div>
                         </div>
 
                     </div>
@@ -71,22 +110,53 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
             </div>
             
             <style jsx>{`
-                
+                .remove{
+                    background-color: #fead9a;
+                    color: #de3618;
+                    margin-left: 10px;
+                    cursor: pointer;
+                }
+                .button-container{
+                    display: flex;
+                    justify-content: center;
+                }
+                .more-info{
+                    background-color: black;
+                    color: white;
+                }
+                .ratings-container{
+                    margin-top: 25px;
+                }
+                .rotten{
+                    height: 25px;
+                    margin-right: 10px;
+                }
+                .director{
+                    margin-top: 25px;
+                    font-size: .9rem;
+                }
                 .year{
                     font-size: .8rem;
                     font-weight: 400;
                     margin-left: 10px;
                 }
-                .nominated{
+                .add {
+                    background-color: #bbe5b3;
+                    color: #50b83c;
+                    cursor: pointer;
+                }
+                .button-base{
                     width: max-content;
-                    background-color: #ffea8a;
-                    color: #8a6116;
                     border-radius: 5px;
                     padding: 5px;
                     font-size: .8rem;
                     height: max-content;
-                    margin: 0 auto;
                     margin-top: 20px;
+                }
+
+                .nominated{
+                    background-color: #ffea8a;
+                    color: #8a6116;
                 }
                 .summary{
                     line-height: 1.8rem;
@@ -130,12 +200,13 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                     margin-left: 5px;
                     font-size: .8rem;
                 }
-                img{
+                .poster{
                     border-radius: 10px;
                     height: 300px;
                     display: block;
                     margin: 0 auto;
                     border: 3px solid #47c1bf;
+                    max-width: 200px;
                 }
                 .close{
                     color: black;
@@ -157,6 +228,8 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    background-color: rgba(249, 250, 251, .8)
+
                 }
                 .container{
                     outline: none;
@@ -165,7 +238,6 @@ const MovieDetails = ({movieObject, setMovieWindow, api_key, ids, removeMovie, a
                     min-height: 60%;
                     width: 80%;
                     background-color: rgba(250, 252, 255, .99);
-                    // background-color: white;
                     box-shadow: 0 7px 14px rgba(50,50,93,0.1), 0 3px 6px rgba(0,0,0,0.08);
                     padding: 40px;
                     border-radius: 10px;
