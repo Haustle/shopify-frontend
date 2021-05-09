@@ -263,7 +263,7 @@ const Home = ({ api_key}) => {
                 ) : <div className="no-selection-made">No Selections</div>
                 }
               </div>
-              <div className="switch-view no-select" onClick={() => setLibView(!libView)}>Switch view</div>
+              <div className="switch-view no-select" onClick={() => setLibView(!libView)}>{libView ? 'Library' : 'Search'} view</div>
               
 
               {/* components load depending on the current view state */}

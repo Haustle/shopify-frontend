@@ -39,7 +39,7 @@ const CompletionBar = ({current, limit, ids, notify}) => {
             <style jsx>{`
 
                 .share{
-                    background-color: var(--color-ink-lighter);
+                    background-color: var(--color-ink-lightest);
                     padding: 5px 10px;
                     border-radius: 10px;
                     color: white;
