@@ -80,6 +80,13 @@ const CompletionBar = ({current, limit, ids, notify}) => {
                     border-radius: 5px;
                     margin-bottom: 50px;
                 }
+
+                @media(max-width: 500px){
+                    .current{
+                        text-align:center;
+                        font-size: 1.1rem;
+                    }
+                }
             `}</style>
         </>
     )

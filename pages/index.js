@@ -343,8 +343,7 @@ const Home = ({ api_key}) => {
         #wrapper{
           display: flex;
           flex-direction: column;
-          height: 700px;
-          margin: 2em;
+          margin: 1.5rem;
         }
         .search-container{
           display: flex;

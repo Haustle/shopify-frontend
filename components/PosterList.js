@@ -20,7 +20,7 @@ const PosterList = ({noms, openMovie}) => {
 
                 }
                 .indi-poster:hover{
-                    // opacity: .8;
+                    opacity: .5;
                 }
                 .title{
                     text-align: center;
@@ -28,7 +28,8 @@ const PosterList = ({noms, openMovie}) => {
                     font-size: .9rem;
                 }
                 .poster-container{
-                    display: inline-table;
+                    // display: inline-table;
+                    // width: 100%;
                     margin-left: 50px;
                 }
                 .poster{
@@ -41,6 +42,13 @@ const PosterList = ({noms, openMovie}) => {
                 }
                 .name{
                     text-transform: capitalize;
+                }
+
+                @media(max-width: 500px){
+                    .indi-poster{
+                        display: flex;
+                        margin: 0 auto;
+                    }
                 }
             `}</style>
         </>
