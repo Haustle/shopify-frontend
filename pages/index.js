@@ -222,7 +222,7 @@ const Home = ({ api_key}) => {
 
         {/* Everything else */}
         <div className="all">
-        <Completionbar current={noms.length} limit={NUM_OF_MOVIES}/>
+        <Completionbar current={noms.length} limit={NUM_OF_MOVIES} ids={ids}/>
           <div className="mainframe">
             <div className="nominees">
 

@@ -1,14 +1,14 @@
 import { createRef, useEffect, useState } from "react";
 import fetch from 'node-fetch';
 
-const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, addMovie}) => {
+const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, addMovie, passInfo = null}) => {
 
     const [moreInfo, setMoreInfo] = useState({});
     const [tomato, setTomato] = useState({});
     const mainDiv = createRef()
 
     // deconstructing the movie object
-    const { Title, imdbID, Year, Type, Poster } = movieObject;
+    const { Title, imdbID, Year, Type, Poster } = passInfo ?? movieObject;
 
 
     // Allowing for the use of the escape key when inside the window
@@ -20,7 +20,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, 
 
 
     const getMoreInfo = async () => {
-        const url = `https://www.omdbapi.com/?apikey=${api_key}&i=${imdbID}`
+        const url = `https://www.omdbapi.com/?apikey=${api_key}&i=${passInfo ? passInfo.imdbID : imdbID}`
         const res = await fetch(url);
         const retJson = await res.json();
         return retJson;
@@ -29,15 +29,16 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, 
     // Make sure we're focusing the parent div so we exit on input 'Escape'
     useEffect(() => {
         mainDiv.current.focus();
+       
         const getInfo = async () => {
-            const searchData = await getMoreInfo();
-            // console.log(searchData)
+            const searchData = passInfo ?? await getMoreInfo();
             const rottenTomatoes = searchData.Ratings.filter(rating => rating.Source == "Rotten Tomatoes")[0];
             setTomato(rottenTomatoes);
             setMoreInfo(searchData);
         }
 
         getInfo();
+        
     },[])
 
     return(
@@ -46,24 +47,24 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, 
                 <div className="container" onKeyDown={escapeWatch} tabIndex="-1" ref={mainDiv}>
                     <div className="space-between ">
                         <div className="left-movie-details">
-                            <img className="poster" src={Poster} />
+                            <img className="poster" src={Poster ?? moreInfo.Poster} />
 
-                            <div className="title">{Title}<span className="year">({Year})</span></div>
+                            <div className="title">{Title ?? moreInfo.Title}<span className="year">({Year ?? moreInfo.Year})</span></div>
                             <div className="type-and-rating">
-                                <span className="details">{Type}</span>
+                                <span className="details">{Type ?? moreInfo.Type}</span>
                                 <span className="details">{moreInfo.Rated != "N/A" ? <span>Rated: <b>{moreInfo.Rated}</b> </span> : "No Rating"}</span>
                             </div>
                             <div className="button-container">
-                                {ids.has(imdbID) ?
+                                {ids && ids.has(imdbID) ?
                                     (
                                         <div className="button-container">
                                             <div className="button-base nominated">Nominated</div>
-                                            <div className="button-base remove" onClick={() => removeMovie(imdbID)}>Remove</div>
+                                            <div className="button-base remove" onClick={() => removeMovie(imdbID ?? moreInfo.imdbID)}>Remove</div>
                                         </div>
 
                                     )
                                     :
-                                    <div className="button-base add" onClick={() => addMovie(imdbID)}>add</div>
+                                    <div className="button-base add" onClick={() => addMovie(imdbID ?? moreInfo.imdbID)}>add</div>
                                 }
                             </div>
                             
@@ -207,6 +208,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, 
                     margin: 0 auto;
                     border: 3px solid #47c1bf;
                     max-width: 200px;
+                    cursor: pointer;
                 }
                 .close{
                     color: black;
