@@ -120,7 +120,8 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                 }
                 .more-info{
                     background-color: var(--color-ink);
-                    color: white;
+                    color: rgb(250, 252, 255);
+;
                 }
                 .ratings-container{
                     margin-top: 25px;
