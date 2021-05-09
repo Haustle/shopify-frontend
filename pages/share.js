@@ -51,35 +51,53 @@ const share = ({name, ids, api_key}) => {
     }
     return(
         <>
-            {movieWindow ? <MovieDetails passImdbID={movieImdbID} passInfo={currentInfo} setMovieWindow={setMovieWindow}/> : null}
-            <div className="space-between align-items">
-                <h2>Top Picks</h2>
-                <div className="make-list"><Link href="/"><a>Make a List</a></Link></div>
+            {movieWindow ? <MovieDetails passImdbID={movieImdbID} passInfo={currentInfo} setMovieWindow={setMovieWindow} /> : null}
 
+            <div id="wrapper">
+                <div className="space-between align-items" id="nav">
+                    <h2>Top 5 Movie's</h2>
+                    <div className="make-list ani2ms"><Link href="/"><a>Make a List</a></Link></div>
+
+                </div>
+                {ids.length == 5 ? allMovies.size == 5 ?
+                    (<>
+
+                        <div className="poster-container">
+                            {[...allMovies.keys()].map(key => (
+                                <div className="indi-poster ani2ms" onClick={() => openMovieModal(key)}>
+                                    <img src={allMovies.get(key).Poster} className="poster" />
+                                    <div className="title">{allMovies.get(key).Title} ({allMovies.get(key).Year})</div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                    ) : mockImages()
+                    : 'Invalid URL'
+                }
             </div>
-            {ids.length == 5 ? allMovies.size == 5 ?
-                (<>
-                    
-                    <div className={`poster-container ${movieWindow ? 'hidden' : null}`}>
-                        {[...allMovies.keys()].map(key => (
-                            <div className="indi-poster ani2ms" onClick={() => openMovieModal(key)}>
-                                <img src={allMovies.get(key).Poster} className="poster" />
-                                <div className="title">{allMovies.get(key).Title} ({allMovies.get(key).Year})</div>
-                            </div>
-                        ))}
-                    </div>
-                </>   
-                ) : mockImages()
-            : 'Invalid URL'    
-            }
+            
             
             <style jsx>{`
+                #nav{
+                    margin-top: 30px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 40px;
+                }
+                #wrapper{
+                    margin: 1.5rem;
+                }  
                 .make-list{
                     font-size: 1rem;
+                    padding: 5px 10px;
+                    border: 1px solid #637381;
+                    color: #637381;
+                    border-radius: 5px;
                 }
-                .hidden{
-                    height: 100vh;
-                    overflow: hidden;
+                .make-list:hover{
+                    background-color: #637381;
+                    color: white;
                 }
                 .indi-poster{
                     display: inherit;
@@ -90,7 +108,7 @@ const share = ({name, ids, api_key}) => {
 
                 }
                 .indi-poster:hover{
-                    // opacity: .8;
+                    opacity: .5;
                 }
                 .title{
                     text-align: center;

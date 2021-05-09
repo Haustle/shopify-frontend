@@ -260,6 +260,7 @@ const Home = ({ api_key}) => {
                 ) : <div className="no-selection-made">No Selections</div>
                 }
               </div>
+              <div className="switch-view no-select" onClick={() => setLibView(!libView)}>Switch view</div>
               
             </div>
 
@@ -271,6 +272,14 @@ const Home = ({ api_key}) => {
       </div>
       
       <style jsx>{`
+        .switch-view{
+          cursor: pointer;
+          color: #637381;
+          padding: 5px 10px;
+          border-radius: 5px;
+          border: 1px solid #637381;
+          width: max-content; 
+        }
         
         .pointer-events-none{
           pointer-events: none;
@@ -314,7 +323,7 @@ const Home = ({ api_key}) => {
         }
         
         .nominees{
-          max-height: 400px;
+          height: 400px;
           width: 35%;
           display: flex;
           flex-direction: column;
@@ -388,6 +397,9 @@ const Home = ({ api_key}) => {
           .nominees{
             margin: 0 auto;
             width: 80%;
+          }
+          .switch-view{
+            margin: 0 auto;
           }
         }
 

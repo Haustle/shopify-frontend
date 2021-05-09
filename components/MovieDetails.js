@@ -203,7 +203,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     height: 300px;
                     display: block;
                     margin: 0 auto;
-                    border: 3px solid #47c1bf;
+                    border: 3px solid #454f5b;
                     max-width: 200px;
                     cursor: pointer;
                 }
