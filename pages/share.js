@@ -1,5 +1,4 @@
 import MovieDetails from '@components/MovieDetails'
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link"
 
@@ -8,7 +7,6 @@ const share = ({name, ids, api_key}) => {
     const [movieImdbID, setmovieImdbID] = useState("")
     const [currentInfo, setCurrentInfo] = useState({})
     const [allMovies, setMovies] = useState(new Map());
-    // http://localhost:3000/share?id=1234567&id=1234567&id=1234567&name=nick
 
     // open details window
     const openMovieModal = (id) => {
@@ -91,12 +89,12 @@ const share = ({name, ids, api_key}) => {
                 .make-list{
                     font-size: 1rem;
                     padding: 5px 10px;
-                    border: 1px solid #637381;
-                    color: #637381;
+                    border: 1px solid var(--color-ink-lighter);
+                    color: var(--color-ink-lighter);
                     border-radius: 5px;
                 }
                 .make-list:hover{
-                    background-color: #637381;
+                    background-color: var(--color-ink-lighter);
                     color: white;
                 }
                 .indi-poster{
@@ -112,7 +110,7 @@ const share = ({name, ids, api_key}) => {
                 }
                 .title{
                     text-align: center;
-                    color: #637381;
+                    color: var(--color-ink-lighter);
                     font-size: .9rem;
                 }
                 .poster-container{

@@ -58,7 +58,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
             <style jsx>{`
                 .none{
                     text-align: center;
-                    color: #637381;
+                    color: var(--color-ink-lighter);
                 }
                 .movie-options{
                     display: flex;
@@ -66,9 +66,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                 .search-container{
                     width: 85%;
                 }
-                .search-results-container{
-                    // margin-top: 50px;
-                }
+
                 .fade{
                     opacity: 0.4;
                     pointer-events: none;
@@ -85,20 +83,20 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                 }
                 .more{
                     margin-right: 5px;
-                    background-color: #b4e1fa;
-                    color: #006fbb;
+                    background-color: var(--color-blue-light);
+                    color: var(--color-blue);
                 }
                 .remove{
-                    background-color: #fead9a;
-                    color: #de3618;
+                    background-color: var(--color-red-light);
+                    color: var(--color-red);
                 }
                 .nominated{
-                    background-color: #ffea8a;
-                    color: #eec200;
+                    background-color: var(--color-yellow-light);
+                    color: var(--color-yellow);
                 }
                 .add{
-                    background-color: #bbe5b3;
-                    color: #50b83c;
+                    background-color: var(--color-green-light);
+                    color: var(--color-green);
                 }
                 .movie-options div{
                     border-radius: 5px;
@@ -111,7 +109,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                 .results-title span{
                     font-weight: bold;
                     padding: 5px;
-                    background-color: #dfe3e8;
+                    background-color: var(--color-sky);
                     border-radius: 5px;
                     margin-left: 10px;
                 }
@@ -130,19 +128,17 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     border-radius: 5px;
                     font-size: .7rem;
                     font-weight: bold;
-                    // width: 15%;
                     text-align: center;
-                    border: 1px solid black;
+                    border: 1px solid currentColor;
                     padding: 2px;
 
                 }
                 .movie-card:hover{
-                    background-color: #f4f6f8;
+                    background-color: var(--color-sky-light);
                 }
                 .movie-card{
                     cursor: pointer;
                     padding: 5px 10px;
-                    // border: 1px solid whitesmoke;
                     border-radius: 5px;
                     justify-content: space-between;
                     display: flex;
@@ -158,7 +154,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     border-radius: 10px;
                     display: flex;
                     justify-content: center;
-                    border: 1px solid #e6e6e6;
+                    border: 1px solid var(--color-sky);
                     height: max-content;
                 }
 

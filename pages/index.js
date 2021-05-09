@@ -142,6 +142,8 @@ const Home = ({ api_key}) => {
     return nomString
   }
 
+
+  // notification styles using toast
   const notify = (msg) => toast.dark(`${msg}`, {
     position: "bottom-right",
     autoClose: 2000,
@@ -159,6 +161,7 @@ const Home = ({ api_key}) => {
     // we only want to save nominations when there's been changes
     // and not on the intial load of the state, thus it'd be empty
     // as our intial value is empty
+    
 
     if(!initialRender){
       setInitialRender(true);
@@ -262,11 +265,11 @@ const Home = ({ api_key}) => {
               </div>
               <div className="switch-view no-select" onClick={() => setLibView(!libView)}>Switch view</div>
               
-            </div>
 
+              {/* components load depending on the current view state */}
+            </div>
               {libView ? <PosterList noms={noms} openMovie={openMovie}/> :
               <SearchResults data={data} query={term} addMovie={addMovie} ids={ids} removeMovie={removeMovie} openMovie={openMovie} />}
-              
           </div>
         </div>
       </div>
@@ -274,10 +277,10 @@ const Home = ({ api_key}) => {
       <style jsx>{`
         .switch-view{
           cursor: pointer;
-          color: #637381;
+          color: var(--color-ink-lighter);
           padding: 5px 10px;
           border-radius: 5px;
-          border: 1px solid #637381;
+          border: 1px solid var(--color-ink-lighter);
           width: max-content; 
         }
         
@@ -308,13 +311,13 @@ const Home = ({ api_key}) => {
         }
 
         .nominee{
-          color: #637381;
+          color: var(--color-ink-lighter);
           cursor: pointer;
           transition: all 0.2s;
           width: max-content;
           padding: 5px 10px;
           border-radius: 5px;
-          background-color: #f4f6f8;
+          background-color: var(--color-sky-light);
 
 
         }
@@ -370,6 +373,8 @@ const Home = ({ api_key}) => {
           display: flex;
           align-items: center;
         }
+
+        // custom colors, not in polaris
 
         #nav{
           display: flex;

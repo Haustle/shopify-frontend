@@ -3,7 +3,7 @@ const PosterList = ({noms, openMovie}) => {
         <>
             <div className="poster-container">
                 {noms.map(nomi => (
-                    <div className="indi-poster ani2ms" onClick={() => openMovie(nomi)}>
+                    <div className="indi-poster ani2ms" key={`poster${nomi.Year}${nomi.Title}`} onClick={() => openMovie(nomi)}>
                         <img src={nomi.Poster} className="poster" />
                     </div>
                 ))}
@@ -23,7 +23,7 @@ const PosterList = ({noms, openMovie}) => {
                 }
                 .title{
                     text-align: center;
-                    color: #637381;
+                    color: var(--color-ink-lighter);
                     font-size: .9rem;
                 }
                 .poster-container{
@@ -51,7 +51,6 @@ const PosterList = ({noms, openMovie}) => {
                         margin: 0 auto;
                     }
                     .poster-container{
-                        // margin-top: 50px;
                         margin-left: 0px;
                     }
                 }

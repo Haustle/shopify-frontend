@@ -1,13 +1,9 @@
 import copy from "copy-to-clipboard";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+
 const CompletionBar = ({current, limit, ids, notify}) => {
-
-
-
     const difffernece = limit - current;
 
-
+    // logic to handle the share- link
     const shareLink = () => {
         // need to determine the environemtn of the project
         const envr = process.env.NODE_ENV;
@@ -28,9 +24,6 @@ const CompletionBar = ({current, limit, ids, notify}) => {
 
     }
 
-    // if the current amount drops or changes we need to make sure 
-    // we change the string back to "Share" as there's been changes
-
     return(
         <>
             <div className="current">
@@ -46,7 +39,7 @@ const CompletionBar = ({current, limit, ids, notify}) => {
             <style jsx>{`
 
                 .share{
-                    background-color: #637381;
+                    background-color: var(--color-ink-lighter);
                     padding: 5px 10px;
                     border-radius: 10px;
                     color: white;
@@ -55,7 +48,6 @@ const CompletionBar = ({current, limit, ids, notify}) => {
 
                 }
                 .share:hover{
-                    // background-color: #637381;
                     opacity: .8;
                 }
                 .current{
@@ -68,8 +60,7 @@ const CompletionBar = ({current, limit, ids, notify}) => {
                 .completion{
                     height: 10px;
                     width: ${current/limit*100}%;
-                    background-color: #637381;
-                    // background-color: #47c1bf;
+                    background-color: var(--color-ink-lighter);
                     transition: all 0.3s;
                     border-radius: 5px;
 
@@ -77,7 +68,7 @@ const CompletionBar = ({current, limit, ids, notify}) => {
                 }
                 .completion-wrapper{
                     width: 100%;
-                    background-color: #dfe3e8;
+                    background-color: var(--color-sky);
                     border-radius: 5px;
                     margin-bottom: 50px;
                 }

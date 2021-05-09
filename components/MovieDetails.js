@@ -109,8 +109,8 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
             
             <style jsx>{`
                 .remove{
-                    background-color: #fead9a;
-                    color: #de3618;
+                    background-color: var(--color-red-light);
+                    color: var(--color-red);
                     margin-left: 10px;
                     cursor: pointer;
                 }
@@ -119,7 +119,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     justify-content: center;
                 }
                 .more-info{
-                    background-color: black;
+                    background-color: var(--color-ink);
                     color: white;
                 }
                 .ratings-container{
@@ -132,6 +132,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                 .director{
                     margin-top: 25px;
                     font-size: .9rem;
+                    
                 }
                 .year{
                     font-size: .8rem;
@@ -139,8 +140,8 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     margin-left: 10px;
                 }
                 .add {
-                    background-color: #bbe5b3;
-                    color: #50b83c;
+                    background-color: var(--color-green-light);
+                    color: var(--color-green);
                     cursor: pointer;
                 }
                 .button-base{
@@ -153,8 +154,8 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                 }
 
                 .nominated{
-                    background-color: #ffea8a;
-                    color: #8a6116;
+                    background-color: var(--color-yellow-light);
+                    color: var(--color-yellow-dark);
                 }
                 .summary{
                     line-height: 1.8rem;
@@ -168,6 +169,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     width: 50%;
                 }
                 .type-and-rating{
+                    color: var(--color-ink);
                     margin-top: 20px;
                     display: flex;
                     justify-content: center;
@@ -177,7 +179,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                 }
                 .type-and-rating .details{
                     font-size: .9rem;
-                    border: 1px solid black;
+                    border: 1px solid currentColor;
                     padding: 2px 5px;
                     border-radius: 5px;
                 }
@@ -203,15 +205,15 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     height: 300px;
                     display: block;
                     margin: 0 auto;
-                    border: 3px solid #454f5b;
+                    border: 3px solid var(--color-ink-light);
                     max-width: 200px;
                     cursor: pointer;
                 }
                 .close{
                     color: black;
                     padding: 5px 10px;
-                    background-color: #e3d0ff;
-                    color: #9c6ade;
+                    background-color: var(--color-purple-light);
+                    color: var(--color-purple);
                     border-radius: 5px;
                     width: max-content;
                     height: max-content;

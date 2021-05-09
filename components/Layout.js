@@ -13,7 +13,6 @@ const Layout = ({children}) => {
                 main{
                     display: flex;
                     justify-content: center;
-                    // align-items: center;
                     height: 100vh;
                     width; 100%;
                 }
@@ -21,7 +20,6 @@ const Layout = ({children}) => {
                     position: relative;
                     width: 900px;
                     border-radius: 5px;
-                    // margin-top: 50px
 
                 }
             `}</style>
