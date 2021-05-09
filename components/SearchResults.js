@@ -44,7 +44,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                                             
                                         </div>
                                     ))
-                                ) : 'Search Above'}
+                                ) : query ? <div className="none">No results found</div> : <div className="none">Enter a new query...</div>}
                             </div>
                             
 
@@ -56,6 +56,10 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
             </div>
             
             <style jsx>{`
+                .none{
+                    text-align: center;
+                    color: #637381;
+                }
                 .movie-options{
                     display: flex;
                 }
@@ -155,7 +159,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     display: flex;
                     justify-content: center;
                     border: 1px solid #e6e6e6;
-                    min-height: 100px;
+                    // min-height: 100px;
                     height: max-content;
                 }
 

@@ -19,8 +19,6 @@ const share = ({name, ids, api_key}) => {
 
     }
 
-
-
     const getMoreInfo = async (id) => {
         const url = `https://www.omdbapi.com/?apikey=${api_key}&i=${id}`
         const res = await fetch(url);
@@ -41,18 +39,26 @@ const share = ({name, ids, api_key}) => {
     useEffect(() => {
         ids.forEach(id => loadMovie(id));
     }, [])
+
+    const mockImages = () => {
+        var mock;
+        for(let x = 0; x < 5; x++){
+            mock += <div className="poster">loading...</div>
+        }
+        return(mock)
+    }
     return(
         <>
 
             {movieWindow ? <MovieDetails passImdbID={movieImdbID} passInfo={currentInfo} setMovieWindow={setMovieWindow}/> : null}
-            {ids.length == 5 && allMovies.size == 5?
+            {ids.length == 5 ? allMovies.size == 5 ?
                 (<div className="poster-container">
                     {[...allMovies.keys()].map(key => (
                         <img src={allMovies.get(key).Poster} className="poster" onClick={() => openMovieModal(key)}/>
                     ))}
                 </div>   
-            )
-            : 'Incorrect URL'    
+                ) : mockImages()
+            : 'Invalid URL'    
             }
             
             <style jsx>{`
