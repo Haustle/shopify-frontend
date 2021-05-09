@@ -2,23 +2,35 @@ import copy from "copy-to-clipboard";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 const CompletionBar = ({current, limit, ids}) => {
-    const router = useRouter();
-    console.log(router)
+
     const [copied, setCopied] = useState("Share")
+
     const difffernece = limit - current;
+
+
     const shareLink = () => {
-        let url = "localhost:3000/share?"
+        // need to determine the environemtn of the project
+        const envr = process.env.NODE_ENV;
+        let url = "";
+
+        if(envr == "development"){
+            url = "localhost:3000/share?";
+        }
+        else if(envr == "production"){
+            url = "shopify.tyrus.im/share?"
+        }
+
         const listIds = [...ids];
         const listIdsString = listIds.map(id => `id=${id}`);
-        let stringIds = listIdsString.join("&")
-        copy(url+stringIds)
-        setCopied("Copied")
+        let stringIds = listIdsString.join("&");
+        copy(url+stringIds);
+        setCopied("Copied");
     }
 
     // if the current amount drops or changes we need to make sure 
     // we change the string back to "Share" as there's been changes
     useEffect(() => {
-        setCopied("Share")
+        setCopied("Share");
     },[current])
     return(
         <>

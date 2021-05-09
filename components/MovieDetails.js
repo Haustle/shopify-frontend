@@ -54,18 +54,12 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, 
                                 <span className="details">{Type ?? moreInfo.Type}</span>
                                 <span className="details">{moreInfo.Rated != "N/A" ? <span>Rated: <b>{moreInfo.Rated}</b> </span> : "No Rating"}</span>
                             </div>
-                            <div className="button-container">
-                                {ids && ids.has(imdbID) ?
-                                    (
-                                        <div className="button-container">
-                                            <div className="button-base nominated">Nominated</div>
-                                            <div className="button-base remove" onClick={() => removeMovie(imdbID ?? moreInfo.imdbID)}>Remove</div>
-                                        </div>
 
-                                    )
-                                    :
-                                    <div className="button-base add" onClick={() => addMovie(imdbID ?? moreInfo.imdbID)}>add</div>
-                                }
+                            {/* add ,remove, and nominate buttons */}
+                            <div className="button-container">
+                                {passInfo || (ids && ids.has(imdbID ?? moreInfo.imdbID))  ? <div className="button-base nominated">Nominated</div> : null}
+                                {ids && ids.has(imdbID ?? moreInfo.imdbID) ? <div className="button-base remove" onClick={() => removeMovie(imdbID ?? moreInfo.imdbID)}>Remove</div>: null}
+                                {!passInfo && !ids.has(imdbID ?? moreInfo.imdbID) ? <div className="button-base add" onClick={() => addMovie(imdbID ?? moreInfo.imdbID)}>add</div> : null}
                             </div>
                             
 
