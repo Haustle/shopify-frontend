@@ -4,7 +4,7 @@
 
 [Challenge](https://docs.google.com/document/d/1SdR9rQpocsH5rPTOcxr9noqHRld5NJlylKO9Hf94U8U/edit#heading=h.31w9woubunro)
 
-![Shopify%20Frontend%20Fall%20Internship%20Challenge%202021%20f70fa9bcad8c485dbe1e35c4f2283269/Untitled.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6ae29844-5361-4547-9420-efdc35959b2a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210509%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210509T234315Z&X-Amz-Expires=86400&X-Amz-Signature=7ac13e671d078ba84049a31ed00e2c847f1db9b6007ade9f7e249e352b066def&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+![Landing page and library view](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d1c92f88-20b5-4e3c-b409-2e262097acb1/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210509%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210509T234859Z&X-Amz-Expires=86400&X-Amz-Signature=379e6a8dfd31749f65f73bcbe3bc9437409c3ad5ff38b0f84b240a81225debd3&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
 
 # Features
 
