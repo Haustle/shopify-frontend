@@ -235,8 +235,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     outline: none;
                     z-index: 9999;
                     position: absolute;
-                    // min-height: 60%;
-                    // min-height: 600px;
+
                     width: 80%;
                     background-color: rgba(250, 252, 255, .99);
                     box-shadow: 0 7px 14px rgba(50,50,93,0.1), 0 3px 6px rgba(0,0,0,0.08);
@@ -244,7 +243,19 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     border-radius: 10px;
 
                 }
+                @media(max-width: 700px){
+                    .wrapper{
+                        position: fixed;
+
+                    }
+                    .container{
+                        width: 100%;
+                        bottom: 0;
+
+                    }
+                }
                 @media(max-width: 580px){
+                    
                     .information-container{
                         display: block;
                     }
@@ -258,6 +269,13 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     .more-info{
                         margin: 0 auto;
                     }
+                    .poster{
+                        height: 150px;
+                    }
+                .director, rotten{
+                    display: none;
+                }
+
                 }
             `}</style>
         </>

@@ -99,17 +99,15 @@ const Home = ({ api_key}) => {
     }
   }
 
+  // 
   const addMovie = async (movie) => {
-
     if (noms.length < NUM_OF_MOVIES && !ids.has(movie.imdbID)) {
       let tempIds = ids;
       tempIds.add(movie.imdbID);
       setIds(tempIds);
 
       const movieInfo = await getMoreInfo(movie.imdbID);
-      // push new movie to list of nominations
       setNoms([...noms, movieInfo])
-      // setData(data);
     }
   }
 
@@ -174,8 +172,6 @@ const Home = ({ api_key}) => {
     }
     
   },[noms])
-
-  
 
   // When the index page and component mount
   // we need to check and see if there are any previously saved
@@ -272,8 +268,6 @@ const Home = ({ api_key}) => {
               
           </div>
         </div>
-        
-        
       </div>
       
       <style jsx>{`
@@ -283,7 +277,6 @@ const Home = ({ api_key}) => {
         }
         .remove-movie{
           position: relative;
-          // left: -20px;
           margin-right: 20px;
           cursor: pointer;
         }
@@ -317,10 +310,7 @@ const Home = ({ api_key}) => {
 
         }
         .nominee:hover{
-          // color: black;
-          // background-color: #dfe3e8;
           opacity: .5;
-
         }
         
         .nominees{

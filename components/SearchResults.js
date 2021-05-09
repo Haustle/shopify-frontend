@@ -130,7 +130,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     border-radius: 5px;
                     font-size: .7rem;
                     font-weight: bold;
-                    width: 15%;
+                    // width: 15%;
                     text-align: center;
                     border: 1px solid black;
                     padding: 2px;

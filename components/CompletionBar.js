@@ -46,7 +46,7 @@ const CompletionBar = ({current, limit, ids, notify}) => {
             <style jsx>{`
 
                 .share{
-                    background-color: black;
+                    background-color: #637381;
                     padding: 5px 10px;
                     border-radius: 10px;
                     color: white;
@@ -55,8 +55,8 @@ const CompletionBar = ({current, limit, ids, notify}) => {
 
                 }
                 .share:hover{
-                    background-color: #637381;
-                    // opacity: .6;
+                    // background-color: #637381;
+                    opacity: .8;
                 }
                 .current{
                     text-align: right;

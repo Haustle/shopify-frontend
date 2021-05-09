@@ -112,6 +112,24 @@ const share = ({name, ids, api_key}) => {
                 .name{
                     text-transform: capitalize;
                 }
+
+                @media(max-width: 500px){
+                    .indi-poster{
+                        width: 100%;
+                        margin: 1rem;
+                    }
+                    .title{
+                        margin-top: 10px;
+                    }
+                    .poster{
+                        display: block;
+                        margin: 0 auto;
+                    }
+                    .poster-container{
+                        display: grid;
+                        justify-content: center;
+                    }
+                }
             `}</style>
         </>
     )

@@ -5,7 +5,6 @@ const PosterList = ({noms, openMovie}) => {
                 {noms.map(nomi => (
                     <div className="indi-poster ani2ms" onClick={() => openMovie(nomi)}>
                         <img src={nomi.Poster} className="poster" />
-                        {/* <div className="title">{nomi.Title} ({nomi.Year})</div> */}
                     </div>
                 ))}
             </div>
@@ -32,7 +31,7 @@ const PosterList = ({noms, openMovie}) => {
                 }
                 .poster{
                     border-radius: 5px;
-                    height: 200px;
+                    height: 240px;
                     box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1),
                                 0 3px 6px rgba(0, 0, 0, 0.08);
                     margin: 1rem;
@@ -41,17 +40,23 @@ const PosterList = ({noms, openMovie}) => {
                 .name{
                     text-transform: capitalize;
                 }
-
+                @media(max-width: 800px){
+                    .poster-container{
+                        margin-top: 50px;
+                    }
+                }
                 @media(max-width: 500px){
                     .indi-poster{
                         display: flex;
                         margin: 0 auto;
                     }
                     .poster-container{
-                        margin-top: 50px;
+                        // margin-top: 50px;
                         margin-left: 0px;
                     }
                 }
+
+
             `}</style>
         </>
     )

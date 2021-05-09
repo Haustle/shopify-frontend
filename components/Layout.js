@@ -21,7 +21,7 @@ const Layout = ({children}) => {
                     position: relative;
                     width: 900px;
                     border-radius: 5px;
-                    margin-top: 50px
+                    // margin-top: 50px
 
                 }
             `}</style>
