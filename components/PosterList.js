@@ -28,8 +28,6 @@ const PosterList = ({noms, openMovie}) => {
                     font-size: .9rem;
                 }
                 .poster-container{
-                    // display: inline-table;
-                    // width: 100%;
                     margin-left: 50px;
                 }
                 .poster{
@@ -48,6 +46,10 @@ const PosterList = ({noms, openMovie}) => {
                     .indi-poster{
                         display: flex;
                         margin: 0 auto;
+                    }
+                    .poster-container{
+                        margin-top: 50px;
+                        margin-left: 0px;
                     }
                 }
             `}</style>

@@ -255,7 +255,7 @@ const Home = ({ api_key}) => {
                 {noms && noms.length > 0 ? (
                   noms.map((movie, index) => (
                     <div key={`nom${movie.Title}${index}`} className="nominee-container align-items">
-                      {/* <span className="remove-movie" onClick={() => removeMovie(movie.imdbID)}>x</span> */}
+                      <span className="remove-movie" onClick={() => removeMovie(movie.imdbID)}>x</span>
                       <div className="nominee" onClick={() => openMovie(movie)} key={`${index}${movie.imdbID}`}>{movie.Title}</div>
                     </div>
                     

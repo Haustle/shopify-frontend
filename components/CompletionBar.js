@@ -51,11 +51,12 @@ const CompletionBar = ({current, limit, ids, notify}) => {
                     border-radius: 10px;
                     color: white;
                     cursor: pointer;
-                    font-weight: 600;
+                    font-weight: 500;
 
                 }
                 .share:hover{
-                    opacity: .6;
+                    background-color: #637381;
+                    // opacity: .6;
                 }
                 .current{
                     text-align: right;
@@ -67,8 +68,8 @@ const CompletionBar = ({current, limit, ids, notify}) => {
                 .completion{
                     height: 10px;
                     width: ${current/limit*100}%;
-                    // background-color: #006fbb;
-                    background-color: #47c1bf;
+                    background-color: #637381;
+                    // background-color: #47c1bf;
                     transition: all 0.3s;
                     border-radius: 5px;
 
@@ -76,7 +77,7 @@ const CompletionBar = ({current, limit, ids, notify}) => {
                 }
                 .completion-wrapper{
                     width: 100%;
-                    background-color: #e0f5f5;
+                    background-color: #dfe3e8;
                     border-radius: 5px;
                     margin-bottom: 50px;
                 }

@@ -154,7 +154,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     width: 100%;
                     box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1),
                                 0 3px 6px rgba(0, 0, 0, 0.08);
-                    padding: 20px;
+                    padding: 40px 20px;
                     border-radius: 10px;
                     display: flex;
                     justify-content: center;

@@ -191,7 +191,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     display: flex;
                     align-items: center;
                     height: max-content;
-                    justify-content: end;
+                    justify-content: flex-end;
 
                 }
                 .or-esc{
