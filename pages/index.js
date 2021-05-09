@@ -86,17 +86,15 @@ const Home = ({ api_key}) => {
     }
   }
 
-  const addMovie = (id) => {
-    if (noms.length < NUM_OF_MOVIES && !ids.has(id)) {
+  const addMovie = (movie) => {
+
+    if (noms.length < NUM_OF_MOVIES && !ids.has(movie.imdbID)) {
       let tempIds = ids;
-      tempIds.add(id);
+      tempIds.add(movie.imdbID);
       setIds(tempIds);
 
-      // filter movie from search
-      const foundMovie = data.filter(movie => movie.imdbID == id)[0];
-
       // push new movie to list of nominations
-      setNoms([...noms, foundMovie])
+      setNoms([...noms, movie])
       setData(data);
     }
   }
@@ -110,8 +108,6 @@ const Home = ({ api_key}) => {
 
   // process to remove a movie from nominations list
   const removeMovie = (id) => {
-    // const id = movieDOM.target.dataset.id;
-
     let tempSet = ids;
     tempSet.delete(id);
     setIds(tempSet);
@@ -319,7 +315,7 @@ const Home = ({ api_key}) => {
         #wrapper{
           display: flex;
           flex-direction: column;
-          height: 700px;
+          height: 800px;
         }
         .search-container{
           display: flex;

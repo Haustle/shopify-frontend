@@ -34,7 +34,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
 
                                                 ) : ( <>
                                                     <div className="more" onClick={() => openMovie(movie)} data-id={movie.imdbID}>Details</div>
-                                                    <div className="add" onClick={() => addMovie(movie.imdbID)} >Add</div>
+                                                    <div className="add" onClick={() => addMovie(movie)} >Add</div>
                                                     </>
                                                 )
 
