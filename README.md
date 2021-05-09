@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shopify Frontend Fall Internship Challenge 2021
 
-## Getting Started
+[Link to the app](https://shopify.tyrus.im/)
 
-First, run the development server:
+[Challenge](https://docs.google.com/document/d/1SdR9rQpocsH5rPTOcxr9noqHRld5NJlylKO9Hf94U8U/edit#heading=h.31w9woubunro)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![Shopify%20Frontend%20Fall%20Internship%20Challenge%202021%20f70fa9bcad8c485dbe1e35c4f2283269/Untitled.png](Shopify%20Frontend%20Fall%20Internship%20Challenge%202021%20f70fa9bcad8c485dbe1e35c4f2283269/Untitled.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Features
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- All movie additions and deletions are autosaved via browser local storage
+- Library view and search view state
+    - Library view
+        - Default state that displays posters of your current nominations
+        - Can be accessed via `Switch view` button in the `Your Choices` column
+        - Can be accessed by giving the search input an empty string and hitting `Enter`
+        - When each poster is clicked a component pops up with additional details and information.
+    - Search view
+        - Active as soon as a user enters a search
+        - Can be accessed via `Switch view` button in the `Your Choices` column.
+        - Searches can be completed by using the search input element in the nav bar
+        - Queries can be made by hitting `Enter` or `Search` button
+        - Queries can be erased by hitting `Esc`
+- Search Results box
+    - Top 10 results displayed
+    - Ability to view additional details of movie, or add it to your list
+- Movie details component
+    - Provided with additional details
+        - Ratings
+        - Plot
+        - Director
+        - Length
+        - Rotten Tomato score
+    - If the component is focused, you can close via `Esc`
+- Share Link
+    - Only available once 5 movies have been selected
+    - Will save a link to user clipboard
+- Notifications
+    - when 5 movies have been selected
+    - when a user clicks share link
+- Responsive design
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Development
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Next.js / React](https://nextjs.org/)
 
-## Learn More
+# CSS Styling
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Shopify Polaris](https://github.com/Shopify/polaris-tokens)
