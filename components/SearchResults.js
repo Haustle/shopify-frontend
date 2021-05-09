@@ -44,7 +44,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                                             
                                         </div>
                                     ))
-                                ) : query ? <div className="none">No results found</div> : <div className="none">Enter a new query...</div>}
+                                ) : query ? <div className="none no-select">No results found</div> : <div className="none no-select">Search result box</div>}
                             </div>
                             
 

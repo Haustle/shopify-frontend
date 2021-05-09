@@ -1,7 +1,7 @@
 import { createRef, useEffect, useState } from "react";
 import fetch from 'node-fetch';
 
-const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, addMovie, passInfo = null}) => {
+const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeMovie, addMovie, passInfo = null}) => {
 
     const [moreInfo, setMoreInfo] = useState({});
     const [tomato, setTomato] = useState({});
@@ -20,6 +20,9 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, ids, removeMovie, 
 
 
     const getMoreInfo = async () => {
+        if(ids.has(movieObject.imdbID)){
+            return noms.filter(nomi => nomi.imdbID == movieObject.imdbID)[0]
+        }
         const url = `https://www.omdbapi.com/?apikey=${api_key}&i=${passInfo ? passInfo.imdbID : imdbID}`
         const res = await fetch(url);
         const retJson = await res.json();

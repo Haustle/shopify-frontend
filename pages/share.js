@@ -1,7 +1,7 @@
 import MovieDetails from '@components/MovieDetails'
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Link from "next/link"
 
 const share = ({name, ids, api_key}) => {
     const [movieWindow, setMovieWindow] = useState(false);
@@ -49,29 +49,55 @@ const share = ({name, ids, api_key}) => {
     }
     return(
         <>
-
+            
             {movieWindow ? <MovieDetails passImdbID={movieImdbID} passInfo={currentInfo} setMovieWindow={setMovieWindow}/> : null}
             {ids.length == 5 ? allMovies.size == 5 ?
-                (<div className="poster-container">
-                    {[...allMovies.keys()].map(key => (
-                        <img src={allMovies.get(key).Poster} className="poster" onClick={() => openMovieModal(key)}/>
-                    ))}
-                </div>   
+                (<>
+                    <div className="space-between align-items">
+                        <h2>Top Picks</h2>
+                        <div><Link href="/"><a>← Make List</a></Link></div>
+
+                    </div>
+                    <div className="poster-container">
+                        {[...allMovies.keys()].map(key => (
+                            <div className="indi-poster ani2ms" onClick={() => openMovieModal(key)}>
+                                <img src={allMovies.get(key).Poster} className="poster" />
+                                <div className="title">{allMovies.get(key).Title} ({allMovies.get(key).Year})</div>
+                            </div>
+                        ))}
+                    </div>
+                </>   
                 ) : mockImages()
             : 'Invalid URL'    
             }
             
             <style jsx>{`
+                .indi-poster{
+                    display: inherit;
+                    width: max-content;
+                    max-width: 200px;
+                    margin-bottom: 20px;
+                    cursor: pointer;
+
+                }
+                .indi-poster:hover{
+                    // opacity: .8;
+                }
+                .title{
+                    text-align: center;
+                    color: #637381;
+                    font-size: .9rem;
+                }
                 .poster-container{
-                    display: inline-block;
+                    display: inline-table;
                 }
                 .poster{
-                    border-radius: 10px;
+                    border-radius: 5px;
                     height: 300px;
-                    border: 3px solid #47c1bf;
-                    max-width: 200px;
+                    // border: 3px solid #47c1bf;
+                    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1),
+                                0 3px 6px rgba(0, 0, 0, 0.08);
                     margin: 1rem;
-                    cursor: pointer;
 
                 }
                 .name{

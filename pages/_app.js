@@ -1,6 +1,5 @@
 import '../styles/globals.css'
-
-
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from '@components/Layout'
 import Head from 'next/head'
 
@@ -9,7 +8,8 @@ function MyApp({ Component, pageProps }) {
     <>
     <Layout>
       <Head>
-        <title>Tyrus Miles – Shoppies Challenge</title>
+        <title>Shoppies Challenge ← Tyrus Miles</title>
+        <link rel="shortcut icon" type="image/png" href="https://cdn.shopify.com/static/shopify-favicon.png"/>
       </Head>
       <Component {...pageProps} />
     </Layout>

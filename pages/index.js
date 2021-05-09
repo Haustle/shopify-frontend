@@ -3,6 +3,7 @@ import SearchResults from '@components/SearchResults';
 import Completionbar from '@components/CompletionBar';
 import MovieDetails from '@components/MovieDetails';
 import fetch from 'node-fetch';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Home = ({ api_key}) => {
@@ -42,7 +43,14 @@ const Home = ({ api_key}) => {
   // fetch movie data by search term
   const movieSearch = async () => {
     // formmating url to get data
-    const url = `https://www.omdbapi.com/?apikey=${api_key}&s=${term}`;
+    const url = `https://www.omdbapi.com/?apikey=${api_key}&s=${term}&type=movie`;
+    const res = await fetch(url);
+    const retJson = await res.json();
+    return retJson;
+  }
+
+  const getMoreInfo = async (imdbID) => {
+    const url = `https://www.omdbapi.com/?apikey=${api_key}&i=${imdbID}`
     const res = await fetch(url);
     const retJson = await res.json();
     return retJson;
@@ -60,7 +68,6 @@ const Home = ({ api_key}) => {
 
         if(Search){
           Search = removeSearchDuplicates(Search);
-          Search = Search.filter(movie => movie.Type == "movie")
           setData(Search)
         }
         // if we get no search results back we're going to set search data to empty
@@ -86,16 +93,17 @@ const Home = ({ api_key}) => {
     }
   }
 
-  const addMovie = (movie) => {
+  const addMovie = async (movie) => {
 
     if (noms.length < NUM_OF_MOVIES && !ids.has(movie.imdbID)) {
       let tempIds = ids;
       tempIds.add(movie.imdbID);
       setIds(tempIds);
 
+      const movieInfo = await getMoreInfo(movie.imdbID);
       // push new movie to list of nominations
-      setNoms([...noms, movie])
-      setData(data);
+      setNoms([...noms, movieInfo])
+      // setData(data);
     }
   }
 
@@ -130,6 +138,16 @@ const Home = ({ api_key}) => {
     return nomString
   }
 
+  const notify = (msg) => toast.dark(`${msg}`, {
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    className: 'notification'
+  });;
 
   // monitor the value changes on noms (nominations)
   useEffect(() => {
@@ -144,7 +162,8 @@ const Home = ({ api_key}) => {
     else{
       setSaveNoms();
       if (noms.length === NUM_OF_MOVIES) {
-        console.log("We have 5");
+
+        notify("We have 5 nominations");
       }
     }
     
@@ -198,8 +217,21 @@ const Home = ({ api_key}) => {
 
   return(
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
+      {movieWindow ? <MovieDetails ids={ids} noms={noms} movieObject={selectedMovie} setMovieWindow={setMovieWindow} api_key={api_key} addMovie={addMovie} removeMovie={removeMovie} /> : null}
+
       <div id="wrapper">
-        {movieWindow ? <MovieDetails ids={ids} movieObject={selectedMovie} setMovieWindow={setMovieWindow} api_key={api_key} addMovie={addMovie} removeMovie={removeMovie}/> : null}
 
         {/* Nav Bar */}
         <div id="nav">
@@ -237,7 +269,7 @@ const Home = ({ api_key}) => {
                 }
               </div>
               
-              <div className="autosave">Autosave: On</div>
+              <div className="autosave no-select">Autosave: On</div>
             </div>
 
               {/* <Content> is the search window */}
@@ -249,6 +281,7 @@ const Home = ({ api_key}) => {
       </div>
       
       <style jsx>{`
+        
         .pointer-events-none{
           pointer-events: none;
         }
