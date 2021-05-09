@@ -4,6 +4,7 @@ import Completionbar from '@components/CompletionBar';
 import MovieDetails from '@components/MovieDetails';
 import fetch from 'node-fetch';
 import { ToastContainer, toast } from 'react-toastify';
+import PosterList from '@components/PosterList';
 
 
 const Home = ({ api_key}) => {
@@ -22,6 +23,7 @@ const Home = ({ api_key}) => {
   const [data, setData] = useState([]) // returned search data
   const [noms, setNoms] = useState([]); // user nominations
   const [ids, setIds] = useState(new Set()); // set of the movie id's from nom
+  const [libView, setLibView] = useState(true)
 
   // this is the popup display for movie details
   const [movieWindow, setMovieWindow] = useState(false);
@@ -36,6 +38,9 @@ const Home = ({ api_key}) => {
     if(entry){ // make sure this isn't an empty string
       searchElement.current.value = "";
       setTerm(entry);
+    }
+    else{
+      setLibView(true);
     }
     
   }
@@ -60,7 +65,7 @@ const Home = ({ api_key}) => {
   useEffect(() => {
     // condition to prevent empty strings from being searched
     if(term){
-
+      setLibView(false);
       // async function retreive search data and filtering
       const fetchData = async () => {
         var searchData = await movieSearch();
@@ -79,6 +84,7 @@ const Home = ({ api_key}) => {
       // call function
       fetchData()
     }
+
   },[term])
 
   
@@ -140,7 +146,7 @@ const Home = ({ api_key}) => {
 
   const notify = (msg) => toast.dark(`${msg}`, {
     position: "bottom-right",
-    autoClose: 5000,
+    autoClose: 2000,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: true,
@@ -217,17 +223,7 @@ const Home = ({ api_key}) => {
 
   return(
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer/>
 
       {movieWindow ? <MovieDetails ids={ids} noms={noms} movieObject={selectedMovie} setMovieWindow={setMovieWindow} api_key={api_key} addMovie={addMovie} removeMovie={removeMovie} /> : null}
 
@@ -250,7 +246,7 @@ const Home = ({ api_key}) => {
 
         {/* Everything else */}
         <div className="all">
-        <Completionbar current={noms.length} limit={NUM_OF_MOVIES} ids={ids}/>
+        <Completionbar current={noms.length} limit={NUM_OF_MOVIES} ids={ids} notify={notify}/>
           <div className="mainframe">
             <div className="nominees">
 
@@ -259,7 +255,7 @@ const Home = ({ api_key}) => {
                 {noms && noms.length > 0 ? (
                   noms.map((movie, index) => (
                     <div key={`nom${movie.Title}${index}`} className="nominee-container align-items">
-                      <span className="remove-movie" onClick={() => removeMovie(movie.imdbID)}>x</span>
+                      {/* <span className="remove-movie" onClick={() => removeMovie(movie.imdbID)}>x</span> */}
                       <div className="nominee" onClick={() => openMovie(movie)} key={`${index}${movie.imdbID}`}>{movie.Title}</div>
                     </div>
                     
@@ -269,11 +265,11 @@ const Home = ({ api_key}) => {
                 }
               </div>
               
-              <div className="autosave no-select">Autosave: On</div>
             </div>
 
-              {/* <Content> is the search window */}
-              <SearchResults data={data} query={term} addMovie={addMovie} ids={ids} removeMovie={removeMovie} openMovie={openMovie}/>
+              {libView ? <PosterList noms={noms} openMovie={openMovie}/> :
+              <SearchResults data={data} query={term} addMovie={addMovie} ids={ids} removeMovie={removeMovie} openMovie={openMovie} />}
+              
           </div>
         </div>
         
@@ -287,7 +283,8 @@ const Home = ({ api_key}) => {
         }
         .remove-movie{
           position: relative;
-          left: -20px;
+          // left: -20px;
+          margin-right: 20px;
           cursor: pointer;
         }
         .no-selection-made{
@@ -296,13 +293,9 @@ const Home = ({ api_key}) => {
         .your-choices{
           margin: 0;
           padding: 0;
+          margin-bottom: 40px;
         }
-        .autosave{
 
-          color: #637381;
-          width: max-content;
-          font-size: .9rem;
-        }
 
         .all{
           margin-top: 100px;
@@ -324,8 +317,9 @@ const Home = ({ api_key}) => {
 
         }
         .nominee:hover{
-          color: black;
-          background-color: #dfe3e8;
+          // color: black;
+          // background-color: #dfe3e8;
+          opacity: .5;
 
         }
         
@@ -335,6 +329,7 @@ const Home = ({ api_key}) => {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          margin-right: 10px;
 
         }
         .mainframe{
@@ -348,7 +343,8 @@ const Home = ({ api_key}) => {
         #wrapper{
           display: flex;
           flex-direction: column;
-          height: 800px;
+          height: 700px;
+          margin: 2em;
         }
         .search-container{
           display: flex;
@@ -392,6 +388,36 @@ const Home = ({ api_key}) => {
           padding: 10px 20px;
           border-radius: 5px;
           outline: none;
+        }
+
+        @media (max-width: 800px){
+
+          .mainframe{
+            display: block;
+          }
+
+          .nominees{
+            margin: 0 auto;
+            width: 80%;
+          }
+        }
+
+        @media(max-width: 500px){
+          #nav{
+            display: block;
+          }
+          .left-side{
+            margin-bottom: 25px;
+          }
+          .search-container{
+            margin: 0 auto;
+            width: max-content;
+          }
+          .left-side{
+            justify-content: center;
+            font-size: 1.2rem;
+          }
+        }
 
       `}</style>
     </>

@@ -10,11 +10,11 @@ const share = ({name, ids, api_key}) => {
     const [allMovies, setMovies] = useState(new Map());
     // http://localhost:3000/share?id=1234567&id=1234567&id=1234567&name=nick
 
-
+    // open details window
     const openMovieModal = (id) => {
         const info = allMovies.get(id)
         setmovieImdbID(id)
-        setCurrentInfo(allMovies.get(id))
+        setCurrentInfo(info)
         setMovieWindow(true);
 
     }
@@ -36,10 +36,12 @@ const share = ({name, ids, api_key}) => {
 
     }
 
+    // Onload, load each movie's details
     useEffect(() => {
         ids.forEach(id => loadMovie(id));
     }, [])
 
+    // Some mock images when page isn't loading
     const mockImages = () => {
         var mock;
         for(let x = 0; x < 5; x++){
@@ -49,16 +51,16 @@ const share = ({name, ids, api_key}) => {
     }
     return(
         <>
-            
             {movieWindow ? <MovieDetails passImdbID={movieImdbID} passInfo={currentInfo} setMovieWindow={setMovieWindow}/> : null}
+            <div className="space-between align-items">
+                <h2>Top Picks</h2>
+                <div className="make-list"><Link href="/"><a>Make a List</a></Link></div>
+
+            </div>
             {ids.length == 5 ? allMovies.size == 5 ?
                 (<>
-                    <div className="space-between align-items">
-                        <h2>Top Picks</h2>
-                        <div><Link href="/"><a>← Make List</a></Link></div>
-
-                    </div>
-                    <div className="poster-container">
+                    
+                    <div className={`poster-container ${movieWindow ? 'hidden' : null}`}>
                         {[...allMovies.keys()].map(key => (
                             <div className="indi-poster ani2ms" onClick={() => openMovieModal(key)}>
                                 <img src={allMovies.get(key).Poster} className="poster" />
@@ -72,6 +74,13 @@ const share = ({name, ids, api_key}) => {
             }
             
             <style jsx>{`
+                .make-list{
+                    font-size: 1rem;
+                }
+                .hidden{
+                    height: 100vh;
+                    overflow: hidden;
+                }
                 .indi-poster{
                     display: inherit;
                     width: max-content;
@@ -94,7 +103,7 @@ const share = ({name, ids, api_key}) => {
                 .poster{
                     border-radius: 5px;
                     height: 300px;
-                    // border: 3px solid #47c1bf;
+                    border: 1px solid whitesmoke;
                     box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1),
                                 0 3px 6px rgba(0, 0, 0, 0.08);
                     margin: 1rem;

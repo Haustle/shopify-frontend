@@ -39,7 +39,6 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
             setTomato(rottenTomatoes);
             setMoreInfo(searchData);
         }
-
         getInfo();
         
     },[])
@@ -48,7 +47,11 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
         <>
             <div className="wrapper">
                 <div className="container" onKeyDown={escapeWatch} tabIndex="-1" ref={mainDiv}>
-                    <div className="space-between ">
+                    <div className="esc">
+                        <div className="close" onClick={() => setMovieWindow(false)}>Close</div>
+
+                    </div>
+                    <div className="information-container space-between ">
                         <div className="left-movie-details">
                             <img className="poster" src={Poster ?? moreInfo.Poster} />
 
@@ -62,17 +65,14 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                             <div className="button-container">
                                 {passInfo || (ids && ids.has(imdbID ?? moreInfo.imdbID))  ? <div className="button-base nominated">Nominated</div> : null}
                                 {ids && ids.has(imdbID ?? moreInfo.imdbID) ? <div className="button-base remove" onClick={() => removeMovie(imdbID ?? moreInfo.imdbID)}>Remove</div>: null}
-                                {!passInfo && !ids.has(imdbID ?? moreInfo.imdbID) ? <div className="button-base add" onClick={() => addMovie(movieObject ?? moreInfo)}>add</div> : null}
+                                {!passInfo && !ids.has(imdbID ?? moreInfo.imdbID) && ids.size < 5 ? <div className="button-base add" onClick={() => addMovie(movieObject ?? moreInfo)}>add</div> : null}
                             </div>
                             
 
 
                         </div>
                         <div className="right-movie-details">
-                            <div className="esc">
-                                <div className="close" onClick={() => setMovieWindow(false)}>Close</div>
-
-                            </div>
+                            
                             <div className="summary">
                                 <h2>Plot</h2>
                                 <div>{moreInfo.Plot}</div>
@@ -218,29 +218,46 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     cursor: pointer;
                     font-weight: 500;
                     font-size: .8rem;
+                    margin-bottom: 10px;
                 }
                 .wrapper{
                     width: 100%;
                     height: 100%;
                     position: absolute;
-                    // background-color: red;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background-color: rgba(249, 250, 251, .8)
+                    background-color: rgba(249, 250, 251, .8);
+                    z-index: 9999;
 
                 }
                 .container{
                     outline: none;
                     z-index: 9999;
                     position: absolute;
-                    min-height: 60%;
+                    // min-height: 60%;
+                    // min-height: 600px;
                     width: 80%;
                     background-color: rgba(250, 252, 255, .99);
                     box-shadow: 0 7px 14px rgba(50,50,93,0.1), 0 3px 6px rgba(0,0,0,0.08);
                     padding: 40px;
                     border-radius: 10px;
 
+                }
+                @media(max-width: 580px){
+                    .information-container{
+                        display: block;
+                    }
+                    .left-movie-details{
+                        width: 100%;
+                    }
+                    .right-movie-details{
+                        width: 100%;
+                        padding-left: 0px;
+                    }
+                    .more-info{
+                        margin: 0 auto;
+                    }
                 }
             `}</style>
         </>

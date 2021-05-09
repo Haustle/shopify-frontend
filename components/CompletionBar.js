@@ -1,9 +1,9 @@
 import copy from "copy-to-clipboard";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-const CompletionBar = ({current, limit, ids}) => {
+const CompletionBar = ({current, limit, ids, notify}) => {
 
-    const [copied, setCopied] = useState("Share")
+
 
     const difffernece = limit - current;
 
@@ -24,20 +24,19 @@ const CompletionBar = ({current, limit, ids}) => {
         const listIdsString = listIds.map(id => `id=${id}`);
         let stringIds = listIdsString.join("&");
         copy(url+stringIds);
-        setCopied("Copied");
+        notify("Copied share link!");
+
     }
 
     // if the current amount drops or changes we need to make sure 
     // we change the string back to "Share" as there's been changes
-    useEffect(() => {
-        setCopied("Share");
-    },[current])
+
     return(
         <>
             <div className="current">
                 {
                     difffernece == 0  
-                        ? <span className="share" onClick={() => shareLink()}>{copied} Link</span>
+                        ? <span className="share ani2ms" onClick={() => shareLink()}>Share Link</span>
                         : <span className="difference">Add {difffernece} more!</span>
                 }
             </div>
@@ -52,13 +51,16 @@ const CompletionBar = ({current, limit, ids}) => {
                     border-radius: 10px;
                     color: white;
                     cursor: pointer;
+                    font-weight: 600;
+
+                }
+                .share:hover{
+                    opacity: .6;
                 }
                 .current{
                     text-align: right;
-                    font-weight: 600;
-                    font-size: .8rem;
+                    font-size: .9rem;
                     padding: 5px 10px;
-                    font-weight: 600;
                     margin-bottom: 15px;
 
                 }

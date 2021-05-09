@@ -34,7 +34,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
 
                                                 ) : ( <>
                                                     <div className="more" onClick={() => openMovie(movie)} data-id={movie.imdbID}>Details</div>
-                                                    <div className="add" onClick={() => addMovie(movie)} >Add</div>
+                                                    {ids.size < 5 ? <div className="add" onClick={() => addMovie(movie)} >Add</div> : null}
                                                     </>
                                                 )
 
@@ -142,7 +142,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                 .movie-card{
                     cursor: pointer;
                     padding: 5px 10px;
-                    border: 1px solid whitesmoke;
+                    // border: 1px solid whitesmoke;
                     border-radius: 5px;
                     justify-content: space-between;
                     display: flex;
@@ -159,7 +159,6 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     display: flex;
                     justify-content: center;
                     border: 1px solid #e6e6e6;
-                    // min-height: 100px;
                     height: max-content;
                 }
 
@@ -173,6 +172,7 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                 .wrapper{
                     padding: 10px;
                     width: 65%;
+                    margin-bottom: 25px;
                 }
                 .content{
                     display: flex;
@@ -180,6 +180,18 @@ const SearchResults = ({data, query, ids, addMovie, removeMovie, openMovie}) => 
                     width: 100%;
                     border-radius: 5px;
 
+                }
+                @media (max-width: 800px){
+                    .wrapper{
+                        margin: 50px auto 25px auto;
+                        width: 100%;
+                    }
+
+                }
+                @media(max-width: 500px){
+                    .year{
+                        display: none;
+                    }
                 }
             `}</style>
         </>

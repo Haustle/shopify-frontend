@@ -8,6 +8,11 @@ body {
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f9fafb;
+
+}
+html {
+  overflow-y: scroll; 
+
 }
 
 a {

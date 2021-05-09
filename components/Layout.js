@@ -13,14 +13,15 @@ const Layout = ({children}) => {
                 main{
                     display: flex;
                     justify-content: center;
-                    align-items: center;
+                    // align-items: center;
                     height: 100vh;
                     width; 100%;
                 }
                 div{
                     position: relative;
-                    width: 800px;
+                    width: 900px;
                     border-radius: 5px;
+                    margin-top: 50px
 
                 }
             `}</style>
