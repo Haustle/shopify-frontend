@@ -224,9 +224,9 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     margin-bottom: 10px;
                 }
                 .wrapper{
-                    width: 100%;
+                    width: 900px;
                     height: 100%;
-                    position: absolute;
+                    position: fixed;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -240,6 +240,7 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                     position: absolute;
 
                     width: 80%;
+                    // max-width: 500px;
                     background-color: rgba(250, 252, 255, .99);
                     box-shadow: 0 7px 14px rgba(50,50,93,0.1), 0 3px 6px rgba(0,0,0,0.08);
                     padding: 40px;
@@ -255,6 +256,11 @@ const MovieDetails = ({ movieObject, setMovieWindow, api_key, noms, ids, removeM
                         width: 100%;
                         bottom: 0;
 
+                    }
+                }
+                @media(max-width: 900px){
+                    .wrapper{
+                        width: 100%;
                     }
                 }
                 @media(max-width: 580px){
