@@ -230,9 +230,13 @@ const Home = ({ api_key}) => {
 
         {/* Nav Bar */}
         <div id="nav">
-          <div className="left-side">
-            <img src="shopify.png" />
-            <span>Shoppies</span>
+          <div className="left-side no-select" onClick={() => setLibView(true)}>
+
+                <img src="shopify.png" />
+                <span>Shoppies</span>
+
+            
+            
           </div>
 
           <div className="search-container">
@@ -372,6 +376,7 @@ const Home = ({ api_key}) => {
         .left-side{
           display: flex;
           align-items: center;
+          cursor: pointer;
         }
 
         // custom colors, not in polaris
